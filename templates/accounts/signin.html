@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Login Form Start -->
+<div class="container col-3 text-center">
+  <main class="form-signin w-100 m-auto my-4">
+    <form method="POST" action="{% url 'signin' %}">
+      {% csrf_token %}
+      <img class="mb-4" src="{% static 'assets/img/logo.png' %}" alt="" width="180" height="60">
+      <h1 class="h3 mb-3 fw-normal">Login</h1>
+
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" name='email' placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating my-1">
+        <input type="password" class="form-control" id="floatingPassword" name='password' placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      {% include 'includes/alert.html' %}
+      <button class="w-100 btn btn-lg btn-primary my-2" type="submit">Login</button>
+
+      <div class="contain d-flex flex-column">
+        <a href="{% url 'forgotpassword' %}" class="">Forgot password?</a>
+        <a href="{% url 'register' %}" class="">Register</a>
+      </div>
+      <p class="mt-5 mb-3 text-muted">Afon Group © 2023–2024</p>
+    </form>
+  </main>
+</div>
+<!-- Login form End  -->
+{% endblock %}

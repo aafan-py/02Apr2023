@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container col-3 text-center d-flex flex-column min-vh-100">
+    <main class="form-register w-100 m-auto my-0">
+      <form method="POST" action="{% url 'register_user' %}">
+        {% csrf_token %}
+        <img class="mb-4" src="{% static 'assets/img/logo.png' %}" alt="Logo" width="180" height="60">
+        <h1 class="h3 mb-3 fw-normal">Register User</h1>
+          <div class="form-floating">
+            {{ form.username }}
+            <label for="floatingInput">Username</label>
+          </div>
+          <div class="form-floating">
+            {{ form.email }}
+            <label for="floatingInput">Email</label>
+          </div>
+          <div class="form-floating">
+            {{ form.password }}
+            <label for="floatingPassword">Create Password</label>
+          </div>
+          <div class="form-floating">
+            {{ form.confirm_password }}
+            <label for="floatingPassword">Confirm Password</label>
+          </div>
+          <br>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="is_reseller" id="is_reseller">
+            <label class="form-check-label" for="is_reseller">
+                Create reseller account
+            </label>
+          </div>
+          <br>
+          {% include 'includes/alert.html' %}
+          <button class="w-100 btn btn-lg btn-primary my-4" type="submit">Register</button>
+      </form>
+    </main>
+  </div>
+  
+  {% endblock %}

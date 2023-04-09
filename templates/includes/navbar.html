@@ -1,0 +1,114 @@
+{% load static %}
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'assets/img/logo.png' %}" alt="AdServs" width="150" height="45">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'index' %}">Dashboard</a>
+                </li>
+
+                {% if request.user.whtsapp_app %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Bulk WhtsApp
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'whtsapp_campaign' %}">Send Campaign</a></li>
+                        <li><a class="dropdown-item" href="{% url 'whtsapp_report' %}">Sent Report</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                {% if request.user.voice_app %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Bulk Voice Calls
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Send Campaign</a></li>
+                        <li><a class="dropdown-item" href="#">Sent Report</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                {% if request.user.is_reseller %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Core Management
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'manage_users' %}">Manage User</a></li>
+                        <li><a class="dropdown-item" href="#">Whitelist Number</a></li>
+                        <li><a class="dropdown-item" href="#">Whitelabel Sub-Domain</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'credit_debit' %}">Assign Credit</a></li>
+                        <li><a class="dropdown-item" href="#">Filter Assign Credit</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Reports
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Campaign Report</a></li>
+                        <li><a class="dropdown-item" href="#">Advance Filter Report</a></li>
+                        <li><a class="dropdown-item" href="#">MIS Report</a></li>
+                    </ul>
+                </li> -->
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Accounts
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'myprofile' %}">My Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'credit_history' %}">Purchase History</a></li>
+                        <li><a class="dropdown-item" href="#">Login History</a></li>
+                    </ul>
+                </li>
+
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Developers
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Setup API Key</a></li>
+                        <li><a class="dropdown-item" href="#">API Documentation</a></li>
+                    </ul>
+                </li> -->
+                <div class="d-flex ms-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item px-4"></li>
+                        <span class="badge rounded-pill text-bg-warning my-2">Wallet Balance: ₹ {{ user.wallet_balance }}</span>
+                    </li>
+                    <li class="nav-item px-2"></li>
+                        <span class="badge rounded-pill text-bg-primary my-2">Welcome {{ user.name }}</span>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="{% url 'logout' %}" class="btn btn-outline-danger">Logout</a>
+                    </li>
+                    {% endif %}
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->

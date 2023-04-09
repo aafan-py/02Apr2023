@@ -1,0 +1,24 @@
+    {% with profile=user.userprofile %}
+        <a href="#" style="text-decoration: none;">Welcome {{ profile.first_name }}</a>
+    {% endwith %}
+
+
+"""
+end_user = Account.objects.create_user(
+    email=email,
+    username=username,
+    password=password,
+    reseller=reseller,
+)
+
+queryset = reseller.end_users.all()
+
+"""
+
+user = Account.objects.create_user(username='us4', email='us4@gmail.com', password='admin@gmail.com', is_reseller=False, reseller=2)
+
+password checker:
+<input type="password" name="vcPassword" maxlength="15" class=" form-control" data-parsley-pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&amp;])[A-Za-z\d@$!%*?&amp;]{8,}$" data-parsley-pattern-message="Must be 8-15 and at least 1 lowercase  1 uppercase 1 numeric one special character" data-parsley-required="true" data-parsley-required-message="Enter New Password" required="" id="id_vcPassword">
+
+confirm password:
+<input type="password" name="vcPassword1" maxlength="15" class=" form-control" data-parsley-required="true" data-parsley-required-message="Enter Confirm Password" required="" id="id_vcPassword1">

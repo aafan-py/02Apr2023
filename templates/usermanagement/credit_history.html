@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'includes/navbar.html' %}
+
+
+<div class="container text-center card col-sm-6 my-3 py-2">
+  <h2>Transaction History</span>
+  </h2>
+  <table class="table m-auto table-hover mb-2">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Credit On</th>
+        <th scope="col">Debit On</th>
+        <th scope="col">Remark</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cd in credits_debits %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ cd.amount }}</td>
+        <td>{{ cd.credit_on }}</td>
+        <td>{{ cd.debit_on }}</td>
+        <td>{{ cd.remark }}</td>
+      </tr>
+      <tr>
+    </tbody>
+    {% endfor %}
+  </table>
+
+
+{% endblock %}

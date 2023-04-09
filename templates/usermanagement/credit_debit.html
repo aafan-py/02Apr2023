@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'includes/navbar.html' %}
+
+{% include 'includes/alert.html' %}
+<h1>Credit/Debit User</h1>
+
+<form method="POST" action="{% url 'credit_debit' %}" novalidate>
+  {% csrf_token %}
+  <label for="user">Select User:</label>
+  <select required name="user" id="user">
+    <option value="" selected disabled hidden>Select User</option>
+    {% for user in users %}
+    <option value="{{ user.id }}">{{ user.username }}</option>
+    {% endfor %}
+  </select>
+  
+  <br>
+  <input type="hidden" name="user_id" id="user_id" value=""><!-- Add this line -->
+  <label for="amount">Amount:</label>
+  <input type="number" step=".01" name="amount" id="amount" required><br>
+  <label for="remark">Remark:</label>
+  <input type="text" name="remark" id="remark" required><br>
+  <label for="transaction_type">Transaction Type:</label>
+  <div id="transaction_type">
+    <input type="radio" id="credit" name="transaction_type" value="credit" required>
+    <label for="credit">Credit</label><br>
+    <input type="radio" id="debit" name="transaction_type" value="debit" required>
+    <label for="debit">Debit</label><br>
+  </div>
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+  // Add event listener to update the hidden field with the selected user ID
+  document.getElementById('user').addEventListener('change', function() {
+    console.log('Selected user ID:', this.value);
+    document.getElementById('user_id').value = this.value;
+    console.log('user_id field value:', document.getElementById('user_id').value);
+  });
+</script>
+
+
+{% endblock %}

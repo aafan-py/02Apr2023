@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'includes/navbar.html' %}
+<div class="container text-center col-sm-6 m-auto ">
+  <main class="form-signin card shadow-lg">
+    <form method="POST" action="{% url 'updateprofile' %}">
+      {% csrf_token %}
+        <h1 class="my-2">Update Profile</h1>
+        <div class="px-2 py-2">
+          <div class="form-floating">
+            {{ form.name }}
+            <label for="floatingInput">Name</label>
+          </div>
+          <div class="form-floating">
+            {{ form.phone_number }}
+            <label for="floatingInput">Phone Number</label>
+          </div>
+          <div class="form-floating">
+            {{ form.company_name }}
+            <label for="floatingInput">Company Name</label>
+          </div>
+          <div class="form-floating">
+            {{ form.address }}
+            <label for="floatingInput">Address</label>
+          </div>
+          <div class="form-floating">
+            {{ form.city }}
+            <label for="floatingInput">City</label>
+          </div>
+          <div class="form-floating">
+            {{ form.state }}
+            <label for="floatingInput">State</label>
+          </div>
+          <div class="form-floating">
+            {{ form.pincode }}
+            <label for="floatingInput">Pincode</label>
+          </div>
+          <div class="form-floating">
+            {{ form.country }}
+            <label for="floatingInput">Country</label>
+          </div>
+          <div class="form-floating">
+            {{ form.gst_number }}
+            <label for="floatingInput">GST Number</label>
+          </div>
+        </div>
+        {% include 'includes/alert.html' %}
+        <button class="btn btn-lg btn-primary my-2" type="submit">Update</button>
+    </form>
+  </main>
+</div>
+
+{% endblock %}

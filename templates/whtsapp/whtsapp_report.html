@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'includes/navbar.html' %}
+
+
+<h1>Report</h1>
+
+
+<div class="container card">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Numbers</th>
+            <th scope="col">Message</th>
+          </tr>
+        </thead>
+        {% for report in reports %}
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>{{ report.numbers }}</td>
+            <td>{{ report.message }}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+</div>
+
+{% endblock %}
